@@ -1,0 +1,6 @@
+# Local tool settings
+.claude/
+# Early Toia coach video: not used by the game (38 MB, plus split copies)
+assets/video/
+__pycache__/
+*.pyc

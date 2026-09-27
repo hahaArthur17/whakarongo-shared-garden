@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123f36">
+  <meta name="description" content="Shared Garden — a gentle movement game for kaumātua. Move to a song and help the community garden grow.">
+  <title>Shared Garden · Hauora Whānau</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3.3">
+</head>
+<body>
+<main class="app" id="app">
+  <header class="topbar">
+    <button class="top-button" id="backButton" hidden><span aria-hidden="true">←</span> Back</button>
+    <a class="brand" href="#home" data-go="home" aria-label="Shared Garden home">
+      <span class="brand-mark" aria-hidden="true">✿</span><b>Shared Garden</b>
+    </a>
+    <button class="top-button" id="helpButton"><span aria-hidden="true">?</span> Help</button>
+  </header>
+
+  <!-- 1 · HOME -->
+  <section class="screen simple-screen active" data-screen="home" aria-labelledby="homeTitle">
+    <div class="simple-hero"><img src="assets/ppt/home-whanau.png" alt="Kaumātua and whānau planting together in a sunny garden" width="1672" height="941"></div>
+    <div class="simple-panel">
+      <h1 id="homeTitle">Move gently.<br>Grow our garden.</h1>
+      <div class="simple-actions">
+        <button class="big-choice choice-green" data-go="way"><span class="big-choice-icon" aria-hidden="true">▶</span><span class="big-choice-text"><b>Play</b><small>Tākaro · move to a song</small></span></button>
+        <button class="big-choice choice-yellow" data-go="garden"><span class="big-choice-icon" aria-hidden="true">🌱</span><span class="big-choice-text"><b>Our Garden</b><small>Tō tātou māra</small></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · HOW TO MOVE (Start) -->
+  <section class="screen simple-screen" data-screen="way" aria-labelledby="wayTitle">
+    <div class="simple-hero"><img src="assets/ppt/movement-kaumatua.png" alt="A kaumātua moving her hands gently in front of native plants" width="836" height="471"></div>
+    <div class="simple-panel stacked">
+      <div class="panel-heading">
+        <h1 id="wayTitle">How would you like to move today?</h1>
+        <p>Choose what feels right today. You can change it next time.</p>
+      </div>
+      <div class="simple-actions three">
+        <button class="big-choice choice-green" data-way="seated"><span class="big-choice-icon" aria-hidden="true">🪑</span><span class="big-choice-text"><b>Seated</b><small>From a sturdy chair or wheelchair</small></span></button>
+        <button class="big-choice choice-green" data-way="standing"><span class="big-choice-icon" aria-hidden="true">🧍</span><span class="big-choice-text"><b>Standing</b><small>Beside a chair for support</small></span></button>
+        <button class="big-choice choice-green" data-way="arms"><span class="big-choice-icon" aria-hidden="true">👐</span><span class="big-choice-text"><b>Arms &amp; hands</b><small>Upper body only</small></span></button>
+      </div>
+      <p class="safety-line"><span aria-hidden="true">♥</span> Move only in a comfortable range. Stop if you feel pain, dizzy or unwell.</p>
+    </div>
+  </section>
+
+  <!-- 3 · CHOOSE A SONG -->
+  <section class="screen song-screen" data-screen="song" aria-labelledby="songTitle">
+    <div class="song-inner">
+      <div class="panel-heading">
+        <h1 id="songTitle">Which song would you like to move to?</h1>
+        <p id="songSubtitle">A longer song grows the garden a little more. Every song counts.</p>
+      </div>
+      <div class="song-grid" id="songGrid"></div>
+      <p class="bonus-line" id="bonusLine"></p>
+    </div>
+  </section>
+
+  <!-- 4 · MOVE -->
+  <section class="screen session-screen" data-screen="session" aria-labelledby="moveTitle">
+    <div class="session-top">
+      <div class="song-progress" aria-label="Song progress">
+        <span class="song-name" id="sessionSong">Song</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div><span class="progress-sprout" aria-hidden="true">🌱</span></div>
+      </div>
+      <ol class="round-dots" id="roundDots" aria-label="Movements in this song"></ol>
+    </div>
+
+    <div class="move-card">
+      <p class="round-label" id="roundLabel">Get ready</p>
+      <h1 id="moveTitle">Get ready</h1>
+      <p class="move-instruction" id="moveInstruction">Find a comfortable position.</p>
+    </div>
+
+    <div class="demo-stage" id="demoStage" aria-label="Seated and standing demonstrators doing the same movement">
+      <figure class="demo" data-demo="seated">
+        <div class="demo-frame"><img alt="" id="seatedA"><img alt="" id="seatedB"></div>
+        <figcaption>Seated</figcaption>
+      </figure>
+      <figure class="demo" data-demo="standing">
+        <div class="demo-frame"><img alt="" id="standingA"><img alt="" id="standingB"></div>
+        <figcaption>Standing</figcaption>
+      </figure>
+      <div class="word-card" id="wordCard" hidden role="status">
+        <small>Kupu · New word</small>
+        <b id="wordMaori">Tūī</b>
+        <span id="wordMeaning">a native songbird</span>
+      </div>
+    </div>
+
+    <div class="camera-row">
+      <button class="camera-toggle" id="cameraToggle" aria-pressed="false"><span aria-hidden="true">📷</span> <span id="cameraLabel">Camera off</span></button>
+      <div class="camera-status" id="cameraStatus">
+        <video id="cameraVideo" muted playsinline hidden></video>
+        <div class="motion-meter" hidden id="motionMeter"><div id="motionFill"></div></div>
+        <span id="cameraText">No camera needed. Turn it on to see your movement counted.</span>
+      </div>
+    </div>
+
+    <div class="session-controls">
+      <button class="control" id="pauseButton"><span aria-hidden="true">⏸</span> Pause</button>
+      <button class="control" id="repeatButton"><span aria-hidden="true">↺</span> Repeat</button>
+      <button class="control control-stop" id="stopButton"><span aria-hidden="true">■</span> Stop &amp; save</button>
+    </div>
+
+    <div class="pause-layer" id="pauseLayer" hidden>
+      <div class="pause-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+        <h2 id="pauseTitle">Paused · Kua tatari</h2>
+        <p>Take your time. Your progress is kept.</p>
+        <button class="big-choice choice-green" id="resumeButton"><span class="big-choice-icon" aria-hidden="true">▶</span><span class="big-choice-text"><b>Continue</b><small>Haere tonu</small></span></button>
+        <button class="big-choice choice-plain" id="pauseStopButton"><span class="big-choice-icon" aria-hidden="true">■</span><span class="big-choice-text"><b>Stop &amp; save</b><small>Keep what you have grown</small></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · CELEBRATE -->
+  <section class="screen celebrate-screen" data-screen="celebrate" aria-labelledby="celebrateTitle">
+    <div class="celebrate-inner">
+      <p class="celebrate-badge" aria-hidden="true">🌿</p>
+      <h1 id="celebrateTitle">Ka pai! The garden grew.</h1>
+      <p class="celebrate-lead" id="celebrateLead">Thank you for moving with us today.</p>
+      <div class="token-row" id="tokenRow" aria-live="polite"></div>
+      <ul class="reward-list" id="rewardList"></ul>
+      <div class="simple-actions">
+        <button class="big-choice choice-yellow" data-go="garden"><span class="big-choice-icon" aria-hidden="true">🌱</span><span class="big-choice-text"><b>See our garden</b><small>Tō tātou māra</small></span></button>
+        <button class="big-choice choice-plain" data-go="home"><span class="big-choice-icon" aria-hidden="true">⌂</span><span class="big-choice-text"><b>Home</b><small>Kāinga</small></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · OUR GARDEN -->
+  <section class="screen garden-screen" data-screen="garden" aria-labelledby="gardenTitle">
+    <div class="garden-head">
+      <div>
+        <h1 id="gardenTitle">Our Garden</h1>
+        <p id="gardenSeasonText">Grown together by everyone who moves.</p>
+      </div>
+      <div class="season-switch" role="group" aria-label="Season">
+        <button data-season="summer" aria-pressed="false"><span aria-hidden="true">☀</span> Summer</button>
+        <button data-season="winter" aria-pressed="false"><span aria-hidden="true">❄</span> Winter</button>
+      </div>
+    </div>
+    <div class="garden-wrap">
+      <div class="garden-scene" id="gardenScene" role="img" aria-label="The shared community garden">
+        <img class="garden-bg" src="assets/garden/garden-world-v51.png" alt="" width="1586" height="992">
+        <div class="season-layer" aria-hidden="true"></div>
+        <div id="gardenBeds"></div>
+        <div id="gardenVisitors"></div>
+      </div>
+    </div>
+    <div class="garden-stats" id="gardenStats"></div>
+  </section>
+
+  <!-- 7 · HELP -->
+  <section class="screen help-screen" data-screen="help" aria-labelledby="helpTitle">
+    <div class="help-inner">
+      <h1 id="helpTitle">How Shared Garden works</h1>
+      <ol class="help-steps">
+        <li><b>Choose</b> how you want to move, and a song.</li>
+        <li><b>Move</b> along with the pictures. Seated and standing are equal.</li>
+        <li><b>Grow</b> — every song you finish helps our shared garden.</li>
+      </ol>
+      <h2>The movements</h2>
+      <div class="move-cards" id="moveCards"></div>
+      <p class="safety-line"><span aria-hidden="true">♥</span><span>Move only in a comfortable range. Stop if you feel pain, dizzy or unwell.<span class="help-extra"> No login. The camera is optional and nothing is recorded.</span></span></p>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+</main>
+<script src="app.js?v=3.3"></script>
+</body>
+</html>

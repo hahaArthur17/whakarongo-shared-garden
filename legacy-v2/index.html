@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#163c36">
+  <meta name="description" content="A gentle Whakarongo movement experience for kaumātua">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Whakarongo — Shared Garden</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css?v=52">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to the movement choices</a>
+  <main class="app video-coach kling-coach" id="app">
+    <header class="topbar">
+      <button class="icon-button" id="backButton" aria-label="Back · Hoki" hidden>←</button>
+      <a class="brand" href="#home" data-go="home" aria-label="Home · Kāinga">
+        <span class="brand-mark">✿</span><span><b>Shared Garden</b><small>Whakarongo movement</small></span>
+      </a>
+      <button class="install" id="install" hidden>Install · Tāuta</button>
+      <button class="icon-button" id="helpButton" aria-label="Help · Āwhina">?</button>
+    </header>
+
+    <div class="screen-stack" id="mainContent">
+      <section class="screen active simple-screen" data-screen="home">
+        <div class="simple-hero"><img src="assets/ppt/home-whanau.png" alt="Kaumātua and whānau planting together in a sunny garden" width="1672" height="941"></div>
+        <div class="simple-panel">
+          <h1>Move gently.<br>Grow your garden.</h1>
+          <div class="simple-actions">
+            <button class="big-choice choice-green" data-start-mode="solo"><span class="big-choice-icon" aria-hidden="true">▶</span><span class="big-choice-text"><b>Play</b><small>Tākaro · 2 minutes</small></span></button>
+            <button class="big-choice choice-yellow" data-open-builder="solo"><span class="big-choice-icon" aria-hidden="true">🌱</span><span class="big-choice-text"><b>My Garden</b><small>Tōku māra</small></span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen challenge-screen" data-screen="challenge">
+        <div class="challenge-hero">
+          <p class="eyebrow">FRIENDLY GARDEN CHALLENGE</p>
+          <h1>Māra Tahi Garden Challenge</h1>
+          <p>Use 50 Garden Tokens to create a bright, peaceful shared block garden.</p>
+        </div>
+        <div class="challenge-content">
+          <h2>Who will build?</h2>
+          <div class="challenge-type" id="challengeType" aria-label="Challenge type">
+            <button class="active" data-challenge-type="individual">👤 Individual Challenge</button>
+            <button data-challenge-type="team">👥 Team Challenge</button>
+          </div>
+          <h2>How points are earned</h2>
+          <div class="score-criteria">
+            <div><b>40</b><span>Movement completion</span></div>
+            <div><b>30</b><span>Shared māra features</span></div>
+            <div><b>20</b><span>Block and crop variety</span></div>
+            <div><b>10</b><span>Finish and submit</span></div>
+          </div>
+          <p class="challenge-note">Every score uses these visible rules. No AI judges garden beauty.</p>
+          <button class="primary xl" id="startChallenge"><span>Begin the challenge</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen split-screen reverse" data-screen="movement">
+        <div class="portrait-panel portrait-one" aria-hidden="true"><div class="portrait-person">👵🏽</div><div class="fern">❧</div></div>
+        <div class="page-copy">
+          <p class="step-label">1 OF 4 · WHAKARITE / SET UP</p>
+          <h1>How would you like to move today?</h1>
+          <p>Choose what feels comfortable. Change at any time.</p>
+          <div class="choice-grid one-column" data-choice-group="movement">
+            <button class="choice selected" data-value="seated"><span class="choice-icon">🪑</span><b>Seated · Noho</b><small>All movements from a stable chair</small><i>✓</i></button>
+            <button class="choice" data-value="standing"><span class="choice-icon">🧍🏽</span><b>Standing · Tū</b><small>Gentle movement beside a chair</small><i>✓</i></button>
+            <button class="choice" data-value="adaptive"><span class="choice-icon">↔</span><b>Choose as we go · Kōwhiri haere</b><small>Change at any time</small><i>✓</i></button>
+          </div>
+          <button class="primary" id="movementContinue"><span>Continue · Haere tonu</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen dark-screen split-screen" data-screen="people">
+        <div class="group-art" aria-hidden="true"><span>👴🏽</span><span>👵🏽</span><span>🧓🏽</span><div class="ground"></div></div>
+        <div class="page-copy">
+          <p class="step-label light">2 OF 4 · HOA / COMPANY</p>
+          <h1>Who are you moving with today?</h1>
+          <div class="choice-grid two-column" data-choice-group="people">
+            <button class="choice selected" data-value="solo"><span class="choice-icon">●</span><b>Just me · Ko au anake</b><small>A quiet personal session</small><i>✓</i></button>
+            <button class="choice" data-value="pair"><span class="choice-icon">●●</span><b>With one person · Ki tētahi atu</b><small>Move side by side</small><i>✓</i></button>
+            <button class="choice" data-value="whanau"><span class="choice-icon">●●●</span><b>Whānau group · Rōpū whānau</b><small>2–12 people together</small><i>✓</i></button>
+          </div>
+          <p class="privacy-note">🔒 No camera or microphone · Kāore he kāmera, he hopuoro rānei.</p>
+          <button class="primary yellow" data-go="comfort"><span>Continue · Haere tonu</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen split-screen reverse blue-screen" data-screen="comfort">
+        <div class="portrait-panel portrait-two" aria-hidden="true"><div class="portrait-person">👴🏽</div><div class="fern">❧</div></div>
+        <div class="page-copy">
+          <p class="step-label">3 OF 4 · WHAKAMARIE / COMFORT</p>
+          <h1>Make the session comfortable for you</h1>
+          <div class="toggle-list">
+            <label><span><b>Written guidance · Kupu āwhina</b><small>Show each movement instruction</small></span><input id="captionsToggle" type="checkbox" checked><i></i></label>
+            <label><span><b>Gentle pace · Kia ngāwari</b><small>Movement at approximately 70 BPM</small></span><input id="gentleToggle" type="checkbox" checked><i></i></label>
+            <label><span><b>High contrast · Rerekētanga kaha</b><small>Make text and buttons clearer</small></span><input id="contrastToggle" type="checkbox"><i></i></label>
+          </div>
+          <h2 class="library-title">Choose one of five waiata · Kōwhiria tētahi o ngā waiata e rima</h2>
+          <div class="waiata-duration-summary" role="status" aria-label="Five waiata, two minutes each, ten minutes total">
+            <b>5 waiata · 2:00 each · 10:00 total</b>
+            <small>Each waiata has its own complete two-minute tutoring class.</small>
+          </div>
+          <div class="track-library" id="trackLibrary">
+            <button class="track needs-audio" data-track="whakarongo" aria-label="Start the two-minute Whakarongo tutor"><b>Whakarongo</b><small>2:00 tutor + singing · Tap to add the song and start</small><i>▶</i></button>
+            <button class="track needs-audio" data-track="tutira" aria-label="Start the two-minute Tūtira Mai Ngā Iwi tutor"><b>Tūtira Mai Ngā Iwi</b><small>2:00 tutor + singing · Tap to add the song and start</small><i>▶</i></button>
+            <button class="track needs-audio" data-track="tearoha" aria-label="Start the two-minute Te Aroha tutor"><b>Te Aroha</b><small>2:00 tutor + singing · Tap to add the song and start</small><i>▶</i></button>
+            <button class="track needs-audio" data-track="etoru" aria-label="Start the two-minute E Toru Ngā Mea tutor"><b>E Toru Ngā Mea</b><small>2:00 tutor + singing · Tap to add the song and start</small><i>▶</i></button>
+            <button class="track selected" data-track="toia" aria-label="Start the two-minute Toia Hunga Roia tutor"><b>Toia – Hunga Roia 2017</b><small>✓ 2:00 tutor + singing · Tap to start now</small><i>▶</i></button>
+          </div>
+          <label class="audio-picker" hidden><input id="audioFile" type="file" accept="audio/*,video/*"><span id="trackHint">Add the full song or finished two-minute class video</span><small id="audioName">Audio = beat-matched coach · Video = its own dance and sound</small></label>
+          <details class="lyrics-editor"><summary>Lyrics on screen · Kupu waiata</summary><label for="lyricsInput">Paste approved lyrics, one line at a time.</label><textarea id="lyricsInput" rows="4" placeholder="Add approved lyric lines for this waiata"></textarea><small>Saved only on this device. Māori wording requires cultural review.</small></details>
+          <p class="movement-safety">Move comfortably. Stop if you feel pain or dizziness.</p>
+          <button class="primary" id="comfortContinue"><span>Continue · Haere tonu</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen dark-screen split-screen" data-screen="overview">
+        <div class="scene overview-scene" aria-hidden="true"><span class="moon"></span><span class="hill h1"></span><span class="hill h2"></span><span class="flowers">✿ ❀ ✿</span></div>
+        <div class="page-copy">
+          <p class="step-label light">4 OF 4 · TE WĀ O TĒNEI RĀ / TODAY</p>
+          <h1>Today we move gently, together</h1>
+          <ol class="session-list">
+            <li><span>1</span><div><b>Learn · Ako</b><small>Hear your selected waiata and its rhythm</small></div></li>
+            <li><span>2</span><div><b>Move · Korikori</b><small>Follow gentle Māori-inspired movement cues</small></div></li>
+            <li><span>3</span><div><b>Connect · Hono</b><small>Acknowledge your effort and others</small></div></li>
+            <li><span>4</span><div><b>Grow · Whakatipu</b><small>Add a new plant to the shared māra</small></div></li>
+          </ol>
+          <button class="primary yellow xl" data-go="learn"><span>I'm ready · Kua rite ahau</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen split-screen reverse" data-screen="learn">
+        <div class="portrait-panel portrait-three" aria-hidden="true"><div class="portrait-stack"><span>👵🏽</span><span>👴🏽</span><span>🧓🏽</span></div></div>
+        <div class="page-copy learn-copy">
+          <p class="eyebrow">PART 1 · WHAKARONGO / LISTEN</p>
+          <h1>Follow your chosen waiata</h1>
+          <p class="pronounce">Slow, comfortable, together · Kia ngāwari</p>
+          <p>Your online tutor demonstrates the selected seated or standing routine while the waiata is sung for exactly two minutes. Pauses do not count.</p>
+          <div class="meaning-card"><span>🙌🏽</span><div><b>Your movement · Tō nekeneke</b><small>Use small steps, copy only the arms when seated, and rest whenever you need.</small></div></div>
+          <button class="secondary wide" id="previewMove">Preview movement · Tirohia</button>
+          <button class="primary xl" data-go="session"><span>Start moving · Tīmata te korikori</span><span>→</span></button>
+        </div>
+      </section>
+
+      <section class="screen session-screen" data-screen="session">
+        <div class="session-stage">
+          <div class="garden-progress"><span>Movement progress</span><b id="gardenPercent">0%</b><i><em id="gardenBar"></em></i></div>
+          <div class="session-token-pill" id="sessionTokenPill">🌱 <b id="sessionTokens">0</b> Garden Tokens</div>
+          <div class="session-choices" aria-label="Class movement settings">
+            <div class="movement-switch" id="sessionMode" aria-label="Seated or standing">
+              <button type="button" data-session-mode="seated">🪑 <b>Seated</b><small>Noho</small></button>
+              <button type="button" data-session-mode="standing">🧍 <b>Standing</b><small>Tū</small></button>
+            </div>
+            <button type="button" class="mirror-mode" id="mirrorMode">🪞 Mirror mode · Coach left = your right</button>
+          </div>
+          <div class="performer-wrap real-kaiako" id="performerWrap" role="img" aria-label="Realistic Kling video coach demonstrating the dance">
+            <video id="coachVideo" class="coach-video" preload="auto" playsinline aria-label="Two-minute realistic Kling dance coach"></video>
+            <div class="seated-coach-frame pose-layer pose-listen active" aria-hidden="true"></div>
+            <div class="seated-coach-frame pose-layer pose-receive" aria-hidden="true"></div>
+            <div class="seated-coach-frame pose-layer pose-share" aria-hidden="true"></div>
+            <div class="seated-coach-frame pose-layer pose-heart" aria-hidden="true"></div>
+            <svg class="performer" viewBox="0 0 340 520" aria-hidden="true" focusable="false">
+              <g class="chair"><path d="M98 276h144v132H98z" fill="#704b37"/><path d="M112 390v100M228 390v100" stroke="#4c3225" stroke-width="17" stroke-linecap="round"/></g>
+              <g class="body"><path d="M106 218Q170 183 234 218L251 380Q170 410 89 380Z" fill="#a44d3e"/><path d="M153 206h34v38h-34z" fill="#9b674c"/><ellipse cx="170" cy="154" rx="58" ry="66" fill="#a97053"/><path d="M114 143q4-69 56-69t57 69q-25-27-58-31-28 8-55 31" fill="#e1ded5"/><path d="M124 123q-15 31 2 61M216 123q15 31-2 61" fill="none" stroke="#d4d0c7" stroke-width="10"/><circle cx="151" cy="153" r="3"/><circle cx="190" cy="153" r="3"/><path d="M148 188q22 16 45 0" fill="none" stroke="#784837" stroke-width="4" stroke-linecap="round"/><circle cx="170" cy="252" r="12" fill="#e8bd54"/></g>
+              <g class="legs"><path class="leg-left" d="M122 370q-5 54 2 101" stroke="#344142" stroke-width="39" stroke-linecap="round"/><path class="leg-right" d="M218 370q5 54-2 101" stroke="#344142" stroke-width="39" stroke-linecap="round"/><path d="M101 483h48M191 483h48" stroke="#252522" stroke-width="22" stroke-linecap="round"/></g>
+              <g class="arms"><g id="armLeft"><path d="M112 235L83 322" stroke="#87473b" stroke-width="33" stroke-linecap="round"/><circle class="hand" cx="79" cy="334" r="24" fill="#a97053"/></g><g id="armRight"><path d="M228 235l29 87" stroke="#87473b" stroke-width="33" stroke-linecap="round"/><circle class="hand" cx="261" cy="334" r="24" fill="#a97053"/></g></g>
+            </svg>
+            <span class="instructor-label">Movement coach</span>
+            <span class="coach-phase" id="coachPhase">Ready · One 2-minute practice</span>
+            <span class="coach-mode-cue" id="coachModeCue"><b>Seated</b><small>Upper body only</small></span>
+            <span class="motion-symbol" id="motionSymbol" aria-hidden="true">✋</span>
+            <div class="heart-glow"></div>
+          </div>
+          <div class="bilingual-lyric-pair" aria-live="polite" aria-label="Current waiata line and English meaning">
+            <div class="lyric-side lyric-side-maori"><small>Te reo Māori</small><b id="lyricMaori">Toia mai</b></div>
+            <div class="lyric-side lyric-side-english"><small>English</small><b id="lyricEnglish">Pull the waka</b></div>
+          </div>
+          <div class="cue-card">
+            <span class="step-count" id="stepCount">INTRO</span><p class="maori" id="maoriCue">Te tīmatanga</p><h2 id="moveTitle">Awaken the garden · Whakaara te māra</h2><p class="lyric-line" id="lyricLine">Whakarongo</p><p id="instruction">Watch the coach and get ready.</p>
+            <p class="comfort-cue" id="comfortCue">Your comfort matters more than range of movement.</p>
+          </div>
+        </div>
+        <div class="session-controls">
+          <div class="timeline"><i id="progress"></i></div><div class="status"><span id="time">0:00 / 2:00</span><span id="bpmLabel">70 BPM</span><span id="modeLabel">Seated · Noho</span></div>
+          <div class="transport"><button id="previous" aria-label="Previous · O mua">←</button><button class="play" id="play"><span>▶</span><b>Start · Tīmata</b></button><button id="next" aria-label="Next · Panuku"><b>Next</b><small>Panuku</small></button></div>
+          <div class="tool-row"><button id="syncNow" class="sync-button">Sync music</button><button id="slower"><b>🐢 Gentler moves</b><small>Smaller range</small></button><button id="replay"><b>↻ Replay</b><small>Whakahokia</small></button><button id="pauseHelp"><b>? Help</b><small>Āwhina</small></button></div>
+          <p class="sync-status" id="syncStatus">Tap Sync when you hear the first sung phrase.</p>
+          <p class="session-safety">Move comfortably. Rest at any time.</p>
+        </div>
+      </section>
+
+      <div class="growth-celebration" id="growthCelebration" hidden aria-live="polite">
+        <div class="growth-sun"></div>
+        <div class="growth-plant"><i>🌱</i><b>🌿</b><em>🌼</em></div>
+        <h2 id="growthMessage">Your garden grew! · Kua tipu tō māra!</h2>
+      </div>
+
+      <section class="screen pause-screen" data-screen="pause">
+        <div class="scene calm-scene" aria-hidden="true"><span class="sun"></span><span class="hill h1"></span><span class="hill h2"></span><span class="birds">⌁⌁</span></div>
+        <div class="page-copy"><p class="eyebrow">KUA TATARI · SESSION PAUSED</p><h1>Take a gentle breath · Kia āta hā</h1><p>Continue when you are ready. Kāore he take kia tere — there is no need to rush.</p><button class="primary xl" data-go="session">Continue · Haere tonu</button><button class="secondary wide" id="replayFromPause">Replay guide · Whakahokia</button><button class="secondary wide" id="changeMode">Change to seated · Huri ki te noho</button><button class="text-button" id="skipFromPause">Skip this movement · Panuku</button><button class="text-button danger" id="finishSessionEarly">Finish session · Whakamutu</button></div>
+      </section>
+
+      <section class="screen split-screen reverse blue-screen" data-screen="connect">
+        <div class="portrait-panel group-portrait" aria-hidden="true"><div class="portrait-person">👵🏽 🤝 👴🏽</div></div>
+        <div class="page-copy"><p class="eyebrow">PART 3 · HONO / CONNECT</p><h1>Acknowledge one another · Manaakitia tētahi ki tētahi</h1><p>If you are moving with someone, share a smile or say “Ka pai” to acknowledge their effort.</p><div class="meaning-card"><span>💛</span><div><b>Optional · He kōwhiringa</b><small>You may continue without doing anything.</small></div></div><button class="primary xl" id="connectDone">Ka pai · Continue / Haere tonu</button></div>
+      </section>
+
+      <section class="screen dark-screen split-screen" data-screen="complete">
+        <div class="scene completion-scene" aria-hidden="true"><span class="moon"></span><span class="hill h1"></span><span class="hill h2"></span><span class="big-flower">✿</span><span class="flowers">❀ ✿ ❀</span></div>
+        <div class="page-copy"><p class="eyebrow gold">KUA TIPU TE MĀRA · THE GARDEN GREW</p><h1>Ka pai!<br>You moved gently today.</h1><div class="completion-meter"><b>100%</b><i><em></em></i></div><ul class="values"><li>Your effort mattered · He taonga tō kaha</li><li>Consistency matters more than speed</li><li>Range, force and standing ability were never scored</li></ul><button class="primary yellow xl" data-go="album">View the garden · Tirohia te māra</button><button class="text-button light" data-go="home">Home · Kāinga</button></div>
+      </section>
+
+      <section class="screen split-screen" data-screen="album">
+        <div class="scene album-scene" aria-hidden="true"><span class="sun"></span><span class="hill h1"></span><span class="hill h2"></span><span class="garden-count" id="gardenCount">✿</span></div>
+        <div class="page-copy"><p class="eyebrow">TŌKU MĀRA · MY GARDEN</p><h1>Every session marks movement and connection</h1><div class="album-stats"><div><b id="sessionCount">0</b><small>Sessions · Ngā wā</small></div><div><b id="plantCount">0</b><small>Plants grown · Ngā tipu</small></div></div><div class="album-card"><span>🌱</span><div><b>Next growth · Te tipu whai muri</b><small>A new fern opens after your next session.</small></div></div><button class="primary xl" data-go="home">Home · Kāinga</button></div>
+      </section>
+
+      <section class="screen reward-screen" data-screen="reward">
+        <div class="reward-bloom" aria-hidden="true"><span>🌱</span><span>🌿</span><span>🌼</span></div>
+        <div class="reward-card">
+          <p class="eyebrow">MOVEMENT COMPLETE</p>
+          <h1 id="rewardTitle">Wonderful work!</h1>
+          <div class="token-award">+<b id="rewardTokens">25</b> <span>Garden Tokens</span></div>
+          <p id="rewardMessage">You earned a new plant for your garden.<br><strong>Would you like to plant it now?</strong></p>
+          <button class="primary yellow xl" id="openRewardGarden"><span>Plant now</span><span>→</span></button>
+          <button class="text-button" id="savePlantLater">Save for later</button>
+        </div>
+      </section>
+
+      <section class="screen builder-screen" data-screen="builder">
+        <header class="builder-header">
+          <div><p class="eyebrow" id="builderEyebrow">MY GARDEN</p><h1 id="builderTitle">Shared Home Garden</h1><p id="builderSubtitle">Your peaceful New Zealand backyard.</p></div>
+          <div class="token-wallet"><span>Garden Tokens</span><b id="builderTokens">0</b></div>
+        </header>
+        <div class="builder-layout voxel-builder-layout">
+          <div class="garden-workspace voxel-workspace">
+            <div class="garden-canvas voxel-stage" id="gardenCanvas" tabindex="0" aria-label="My garden. Tap an existing object to select it. When placing, press or touch the preview and drag it to the exact position you want.">
+              <canvas id="voxelGardenCanvas" aria-hidden="true"></canvas>
+              <div class="voxel-selection-label" id="voxelSelectionLabel" aria-live="polite" hidden><b>Garden area selected</b><span>Choose what you would like to do.</span></div>
+              <div class="garden-view-controls" aria-label="Garden view controls">
+                <button type="button" id="gardenViewLeft" aria-label="Move view left"><b>←</b><small>Left</small></button>
+                <button type="button" id="gardenZoomOut" aria-label="Zoom out"><b>−</b><small>Zoom out</small></button>
+                <button type="button" id="gardenViewReset" aria-label="Reset garden view"><b>⌂</b><small>Reset</small></button>
+                <button type="button" id="gardenZoomIn" aria-label="Zoom in"><b>＋</b><small>Zoom in</small></button>
+                <button type="button" id="gardenViewRight" aria-label="Move view right"><b>→</b><small>Right</small></button>
+              </div>
+              <div class="garden-object-menu" id="gardenObjectMenu" hidden>
+                <strong id="gardenObjectName">Garden item</strong>
+                <div>
+                  <button type="button" id="moveGardenObject"><b>↔ Move</b><small>Neke</small></button>
+                  <button type="button" id="rotateGardenObject" hidden><b>↻ Rotate</b><small>Huri</small></button>
+                  <button type="button" id="removeGardenObject"><b>× Remove</b><small>Tango</small></button>
+                  <button type="button" id="gardenObjectInfo"><b>ⓘ Info</b><small>About this</small></button>
+                </div>
+              </div>
+              <div class="garden-placement-panel" id="gardenPlacementPanel" hidden>
+                <div><span class="placement-step">CHOOSE → PREVIEW → PLACE → ENJOY</span><b id="gardenPreviewName">Sunflower</b><small id="gardenPreviewHelp">Grab the item and drag it to the place you choose.</small></div>
+                <div class="garden-placement-actions">
+                  <button type="button" class="place-garden-choice" id="placeGardenChoice"><b>✓ Place here</b><small>Whakatō ki konei</small></button>
+                  <button type="button" class="cancel-garden-choice" id="cancelGardenChoice"><b>× Cancel</b><small>Whakakore</small></button>
+                </div>
+              </div>
+              <section class="easy-garden-guide legacy-garden-controls" id="easyGardenGuide" aria-labelledby="easyGardenTitle" hidden>
+                <div class="easy-guide-copy">
+                  <span class="easy-step-badge">YOUR NEXT MOVE · TE MAHI WHAI MURI</span>
+                  <h2 id="easyGardenTitle" aria-live="polite">Let’s grow one thing</h2>
+                  <p id="easyGardenHelp">Press the big button. The garden will guide you.</p>
+                  <div class="easy-growth-steps" id="easyGrowthSteps" aria-label="Plant growth progress"></div>
+                </div>
+                <div class="easy-guide-actions">
+                  <button type="button" class="easy-primary-action" id="easyGardenAction"><span aria-hidden="true">🌱</span><b>Choose a plant</b><small>Whakatō he tipu</small></button>
+                  <button type="button" class="easy-surprise-action" id="gardenSurprise"><span aria-hidden="true">✨</span><b>Plant for me</b><small>One-tap surprise · Ohorere</small></button>
+                </div>
+              </section>
+            </div>
+            <button type="button" class="more-garden-choices legacy-garden-controls" id="moreGardenChoices" aria-expanded="false" aria-controls="voxelActionBar" hidden>＋ More garden choices · Ētahi atu kōwhiringa</button>
+            <div class="voxel-action-bar legacy-garden-controls" id="voxelActionBar" aria-label="More garden actions" hidden>
+              <button type="button" data-garden-action="plant"><span aria-hidden="true">＋</span><b>Plant</b><small>Whakatō</small></button>
+              <button type="button" data-garden-action="water"><span aria-hidden="true">≈</span><b>Water</b><small>Whakainu</small></button>
+              <button type="button" data-garden-action="harvest"><span aria-hidden="true">✓</span><b>Harvest</b><small>Hauhake</small></button>
+              <button type="button" data-garden-action="build"><span aria-hidden="true">▦</span><b>Build</b><small>Hanga</small></button>
+              <button type="button" data-garden-action="decorate"><span aria-hidden="true">◆</span><b>Decorate</b><small>Whakapaipai</small></button>
+              <button type="button" data-garden-action="change"><span aria-hidden="true">↻</span><b>Change Plant</b><small>Huri tipu</small></button>
+              <button type="button" data-garden-action="remove"><span aria-hidden="true">×</span><b>Remove</b><small>Tango</small></button>
+            </div>
+            <div class="placement-tools">
+              <span id="placementHint">Tap a plant or garden object to change it.</span>
+              <div><button type="button" id="gardenSound" aria-pressed="true">Sounds on · Oro āe</button><button type="button" id="undoGarden" disabled>↶ Undo</button></div>
+            </div>
+          </div>
+          <aside class="garden-shop garden-profile-panel">
+            <p class="garden-panel-kicker">TĀKU MĀRA · MY GARDEN</p>
+            <div class="builder-progress" id="builderProgress"></div>
+            <div class="turn-card" id="turnCard" hidden>Next choice: <b id="turnName">Aroha</b></div>
+            <button type="button" class="add-to-garden" id="addToGarden" aria-expanded="false" aria-controls="gardenDrawer"><span aria-hidden="true">＋</span><b>Add to my garden</b><small>Tāpiri ki tāku māra</small></button>
+            <button type="button" class="open-garden-collection" id="openGardenCollection">My collection · Aku hua</button>
+            <div class="voxel-selection-card legacy-garden-controls" hidden><b id="voxelSelectedTitle">No area selected</b><span id="voxelSelectedState">Choose a garden area.</span></div>
+            <p class="autosave-note">✓ Garden changes save automatically on this device.</p>
+            <button class="primary xl" id="finishGarden"><span>Done</span><span>✓</span></button>
+          </aside>
+        </div>
+        <section class="garden-drawer" id="gardenDrawer" hidden aria-labelledby="gardenChoiceTitle">
+          <button type="button" class="drawer-close" id="closeGardenDrawer" aria-label="Close garden choices">×</button>
+          <div class="drawer-heading"><div><p class="eyebrow">ADD TO MY GARDEN</p><h2 id="gardenChoiceTitle">Choose something you love</h2><p class="paint-intro" id="gardenChoiceHelp">Large pictures make choosing easy.</p></div><span><b id="drawerTokens">0</b> Garden Tokens</span></div>
+          <div class="garden-categories" id="gardenCategories" aria-label="Garden categories">
+            <button type="button" data-garden-category="plants" class="active">Plants</button>
+            <button type="button" data-garden-category="flowers">Flowers</button>
+            <button type="button" data-garden-category="vegetables">Vegetables</button>
+            <button type="button" data-garden-category="native">Native plants</button>
+            <button type="button" data-garden-category="trees">Trees</button>
+            <button type="button" data-garden-category="furniture">Furniture</button>
+            <button type="button" data-garden-category="paths">Paths</button>
+            <button type="button" data-garden-category="decorations">Decorations</button>
+          </div>
+          <div class="catalogue" id="gardenCatalogue"></div>
+          <div class="garden-collection" id="gardenCollectionPanel" hidden><h3>My collection · Aku hua</h3><div id="gardenCollection"><span>Harvested crops will appear here.</span></div></div>
+        </section>
+        <div class="placement-growth voxel-feedback" id="placementGrowth" hidden aria-live="polite"><b>Your shared garden is growing.</b></div>
+      </section>
+
+      <section class="screen results-screen" data-screen="results">
+        <div class="results-wrap">
+          <p class="eyebrow">GARDEN CHALLENGE COMPLETE</p>
+          <h1>Every garden brought something special</h1>
+          <div class="final-breakdown" id="finalBreakdown"></div>
+          <h2>Celebration awards</h2>
+          <div class="award-grid" id="awardGrid"></div>
+          <h2>People’s Choice</h2>
+          <p>Choose one garden to celebrate. Every participant still receives a positive award.</p>
+          <div class="vote-grid" id="voteGrid"></div>
+          <button class="primary xl" data-go="home"><span>Return Home</span><span>⌂</span></button>
+        </div>
+      </section>
+
+    </div>
+    <div class="toast" id="toast" hidden></div>
+  </main>
+  <script src="app.js?v=62"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ff3fa30d78d9ba',t:'MTc5MDIyNjI2OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

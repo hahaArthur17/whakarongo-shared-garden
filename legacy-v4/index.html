@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123f36">
+  <meta name="description" content="Shared Garden — move to a song and grow a garden.">
+  <title>Shared Garden · Hauora Whānau</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles.css?v=5.5">
+</head>
+<body>
+<main class="app" id="app">
+  <header class="topbar">
+    <button class="btn btn-secondary btn-small" id="backButton" hidden><span class="btn-icon" aria-hidden="true">←</span><span class="btn-label">Back</span></button>
+    <a class="brand" href="#home" data-go="home" aria-label="Shared Garden home"><span class="brand-mark" aria-hidden="true">✿</span><b>Shared Garden</b></a>
+    <button class="btn btn-secondary btn-small" id="helpButton"><span class="btn-icon" aria-hidden="true">?</span><span class="btn-label">Help</span></button>
+  </header>
+
+  <!-- HOME -->
+  <section class="screen simple-screen active" data-screen="home" aria-labelledby="homeTitle">
+    <div class="simple-hero"><img src="assets/ppt/home-whanau.png" alt="Kaumātua and whānau planting together in a sunny garden" width="1672" height="941"></div>
+    <div class="simple-panel">
+      <h1 id="homeTitle">Move gently.<br>Grow our garden.</h1>
+      <div class="btn-row">
+        <button class="btn btn-primary btn-large" data-go="song"><span class="btn-icon" aria-hidden="true">▶</span><span class="btn-label"><b>Play</b><small>Tākaro</small></span></button>
+        <button class="btn btn-secondary btn-large" data-go="garden"><span class="btn-icon" aria-hidden="true">🌱</span><span class="btn-label"><b>Our Garden</b><small>Tō tātou māra</small></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHOOSE A SONG -->
+  <section class="screen song-screen" data-screen="song" aria-labelledby="songTitle">
+    <div class="page-inner">
+      <h1 id="songTitle">Choose a song</h1>
+      <div class="song-grid" id="songGrid"></div>
+      <p class="bonus-pill" id="bonusLine" hidden>🌱 +10 for your first song today</p>
+    </div>
+  </section>
+
+  <!-- MOVE -->
+  <section class="screen session-screen" data-screen="session" aria-labelledby="moveTitle">
+    <div class="progress-track" aria-label="Song progress"><div class="progress-fill" id="progressFill"></div><span class="progress-sprout" aria-hidden="true">🌱</span></div>
+
+    <div class="move-card">
+      <h1 id="moveTitle">Get ready</h1>
+      <p class="move-instruction" id="moveInstruction">Find a comfortable position.</p>
+      <p class="word-card" id="wordCard" hidden><b id="wordMaori">Tūī</b><span id="wordMeaning">native songbird</span></p>
+    </div>
+
+    <div class="demo-stage" id="demoStage">
+      <figure class="demo" data-demo="standing">
+        <div class="demo-frame" role="img" aria-label="Standing demonstrator"></div>
+        <figcaption>Standing</figcaption>
+      </figure>
+      <figure class="demo" data-demo="seated">
+        <div class="demo-frame" role="img" aria-label="Seated demonstrator"></div>
+        <figcaption>Seated</figcaption>
+      </figure>
+      <div class="camera-view" id="cameraView" hidden><video id="cameraVideo" muted playsinline></video><span class="moving-badge" id="movingBadge" hidden>✓ Moving</span></div>
+    </div>
+
+    <div class="session-controls">
+      <button class="btn btn-primary" id="pauseButton"><span class="btn-icon" aria-hidden="true">❚❚</span><span class="btn-label">Pause</span></button>
+      <button class="btn btn-secondary" id="cameraToggle" aria-pressed="false"><span class="btn-icon" aria-hidden="true">📷</span><span class="btn-label" id="cameraLabel">Use camera</span></button>
+    </div>
+
+    <div class="pause-layer" id="pauseLayer" hidden>
+      <div class="pause-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+        <h2 id="pauseTitle">Paused</h2>
+        <button class="btn btn-primary btn-large" id="resumeButton"><span class="btn-icon" aria-hidden="true">▶</span><span class="btn-label"><b>Continue</b></span></button>
+        <button class="btn btn-secondary btn-large" id="finishButton"><span class="btn-icon" aria-hidden="true">■</span><span class="btn-label"><b>Finish</b></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CELEBRATE -->
+  <section class="screen celebrate-screen" data-screen="celebrate" aria-labelledby="celebrateTitle">
+    <div class="page-inner centred">
+      <p class="celebrate-badge" aria-hidden="true">🌿</p>
+      <h1 id="celebrateTitle">Ka pai!</h1>
+      <p class="token-earned" id="tokenEarned">+40 🌱</p>
+      <p class="bonus-pill" id="celebrateBonus" hidden>Includes 10 for your first song today</p>
+      <p class="can-add" id="celebrateCanAdd" hidden></p>
+      <div class="btn-row">
+        <button class="btn btn-primary btn-large" data-go="shop"><span class="btn-icon" aria-hidden="true">🌱</span><span class="btn-label"><b>Decorate garden</b></span></button>
+        <button class="btn btn-secondary btn-large" data-go="home"><span class="btn-icon" aria-hidden="true">⌂</span><span class="btn-label"><b>Home</b></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR GARDEN -->
+  <section class="screen garden-screen" data-screen="garden" aria-labelledby="gardenTitle">
+    <div class="garden-head">
+      <h1 id="gardenTitle">Our Garden</h1>
+      <span class="token-pill" aria-label="Tokens"><span aria-hidden="true">🌱</span> <b class="token-count">0</b></span>
+    </div>
+    <div class="season-tabs" role="group" aria-label="Season">
+      <button class="btn btn-secondary" data-season="summer" aria-pressed="false"><span class="btn-icon" aria-hidden="true">☀</span><span class="btn-label">Summer</span></button>
+      <button class="btn btn-secondary" data-season="winter" aria-pressed="false"><span class="btn-icon" aria-hidden="true">❄</span><span class="btn-label">Winter</span></button>
+    </div>
+    <div class="garden-wrap">
+      <div class="garden-scene" id="gardenScene" role="img" aria-label="Our garden">
+        <img class="garden-bg" id="gardenBg" alt="" src="assets/garden/garden-world-v51.png">
+        <div class="season-layer" aria-hidden="true"></div>
+        <div id="gardenItems"></div>
+        <p class="garden-empty" id="gardenEmpty" hidden>Your garden is ready for its first plant 🌱</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-large garden-add" data-go="shop"><span class="btn-icon" aria-hidden="true">＋</span><span class="btn-label"><b>Add to garden</b></span></button>
+  </section>
+
+  <!-- ADD TO GARDEN (token page) -->
+  <section class="screen shop-screen" data-screen="shop" aria-labelledby="shopTitle">
+    <div class="page-inner">
+      <div class="garden-head">
+        <h1 id="shopTitle">Add to garden</h1>
+        <span class="token-pill" aria-label="Tokens"><span aria-hidden="true">🌱</span> <b class="token-count">0</b></span>
+      </div>
+      <div class="shop-grid" id="shopGrid"></div>
+    </div>
+  </section>
+
+  <!-- HELP -->
+  <section class="screen help-screen" data-screen="help" aria-labelledby="helpTitle">
+    <div class="page-inner centred">
+      <h1 id="helpTitle">Help</h1>
+      <ol class="help-steps">
+        <li><span aria-hidden="true">▶</span>Pick a song</li>
+        <li><span aria-hidden="true">🙌</span>Move along</li>
+        <li><span aria-hidden="true">🌱</span>Grow your garden</li>
+      </ol>
+      <p class="safety-line">Stop if you feel pain or dizzy.</p>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+</main>
+<script src="app.js?v=5.3"></script>
+</body>
+</html>
