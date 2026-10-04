@@ -33,7 +33,7 @@ The tool also smooths the loop join and updates `clips/index.json`.
 - [ ] Tokens: 5 per 15 s of moving + 10 for the first song of the day (report says 1 / 2 / 3 bands)
 - [ ] No separate "arms & hands only" option; standing and seated are shown side by side instead
 - [ ] Waiata Hands / Poi Pathways draft cards are no longer shown in the game
-- [ ] Garden: players unlock items with tokens and each sits in a fixed spot; summer and winter are two different gardens
+- [ ] Garden: players unlock items with tokens and drag them anywhere in the picture; summer and winter are two different gardens
 - [ ] Movement demos are AI-generated clips (Kling, Dreamina, Hailuo, Vidu) with watermarks kept
 
 ## Deployment

@@ -36,7 +36,7 @@ p { margin: 0; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 4px solid var(--ink); outline-offset: 3px; }
 
-.app { position: relative; max-width: 1480px; height: 100svh; margin: 0 auto; background: var(--paper); overflow: hidden; }
+.app { position: relative; max-width: 1920px; height: 100svh; margin: 0 auto; background: var(--paper); overflow: hidden; }
 
 /* =========================================================
    ONE BUTTON STYLE for the whole game
@@ -169,7 +169,11 @@ p { margin: 0; }
 .garden-scene[data-season="summer"] .season-layer { background: radial-gradient(circle at 90% 4%, #fff3b0b0, transparent 40%); }
 .garden-scene[data-season="winter"] .season-layer { background: linear-gradient(180deg, #eef3f8aa, transparent 45%); animation: mist 8s ease-in-out infinite alternate; }
 @keyframes mist { to { opacity: .55; } }
-.garden-item { position: absolute; height: auto; translate: -50% -100%; filter: drop-shadow(0 6px 5px #0003); }
+.garden-item { position: absolute; height: auto; translate: -50% -100%; filter: drop-shadow(0 6px 5px #0003); cursor: grab; touch-action: none; user-select: none; -webkit-user-drag: none; transition: scale .15s, filter .15s; }
+.garden-item:focus-visible { outline: 4px solid var(--yellow); outline-offset: 4px; border-radius: 8px; }
+/* Picked up: a little bigger with a deeper shadow, and in front of everything while it moves. */
+.garden-item.lifted { z-index: 5; cursor: grabbing; scale: 1.1; filter: drop-shadow(0 16px 12px #0005); animation: none; }
+.drag-hint { position: absolute; z-index: 6; left: 50%; top: 14px; translate: -50% 0; margin: 0; padding: 8px 18px; border-radius: 999px; background: #fffaf0ee; color: var(--green); font-weight: 700; font-size: 1.15rem; box-shadow: var(--shadow); pointer-events: none; white-space: nowrap; }
 .garden-scene[data-season="winter"] .garden-item { filter: drop-shadow(0 6px 5px #0003) saturate(.85); }
 .garden-item.flying { animation: bob 3.2s ease-in-out infinite; }
 .garden-item.new { animation: pop .8s cubic-bezier(.3, 1.6, .5, 1); }
@@ -202,6 +206,34 @@ p { margin: 0; }
 
 /* ---------- Toast ---------- */
 .toast { position: absolute; z-index: 40; left: 50%; bottom: 24px; translate: -50% 0; max-width: min(520px, 92%); padding: 14px 22px; border-radius: 16px; background: var(--ink); color: #fff; font-weight: 700; font-size: 1.15rem; text-align: center; box-shadow: var(--shadow); }
+
+/* Wide screens (16:10, 16:9): words and buttons in a slim column on the right, so the demonstrators can use
+   the full height. Squarer screens keep the band on top, which leaves them more room there. */
+@media (min-width: 1001px) and (min-aspect-ratio: 3/2) {
+  .session-screen.active {
+    grid-template-columns: minmax(0, 1fr) clamp(290px, 23vw, 360px);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "stage progress" "stage card" "stage ." "stage controls";
+  }
+  .progress-row { margin-top: 12px; }
+  .move-card { grid-template-columns: 1fr; gap: 10px; }
+  .move-card h1 { font-size: clamp(2.2rem, 2.8vw, 2.9rem); }
+  .move-instruction { font-size: 1.5rem; }
+  .session-controls { grid-template-columns: 1fr; }
+  .session-controls .btn { min-height: 84px; font-size: 1.3rem; }
+
+  /* The garden picture gets the full height; title, seasons and Add sit in the same right-hand column. */
+  .garden-screen.active {
+    display: grid; gap: 16px clamp(16px, 2.5vw, 32px); padding: calc(var(--top) + 2px) clamp(16px, 3vw, 36px) 20px;
+    grid-template-columns: minmax(0, 1fr) clamp(260px, 20vw, 340px);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "wrap head" "wrap tabs" "wrap ." "wrap add";
+  }
+  .garden-head { grid-area: head; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 12px; }
+  .season-tabs { grid-area: tabs; grid-template-columns: 1fr; }
+  .garden-wrap { grid-area: wrap; }
+  .garden-add { grid-area: add; width: 100%; }
+}
 
 /* ---------- Tablet / narrow desktop ---------- */
 @media (max-width: 1000px) {

@@ -90,7 +90,8 @@ const SEASONS = {
 const STORE_KEY = 'sharedGardenV4';
 const today = () => new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
 function loadSave() {
-  const fresh = {tokens: 40, unlocked: [], lastDay: null, camera: null}; // camera: null = not asked yet, 'on' | 'off'
+  // camera: null = not asked yet, 'on' | 'off'; places: where the player moved each garden item
+  const fresh = {tokens: 40, unlocked: [], lastDay: null, camera: null, places: {}, movedOnce: false};
   try { return {...fresh, ...JSON.parse(localStorage.getItem(STORE_KEY))}; } catch { return fresh; }
 }
 function persist() {
@@ -407,15 +408,66 @@ function renderGarden() {
   $('#gardenBg').src = SEASONS[season].bg;
   scene.style.setProperty('--ratio', SEASONS[season].ratio);
   $$('[data-season]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.season === season)));
-  $('#gardenItems').innerHTML = SEASONS[season].items
-    .filter(item => save.unlocked.includes(item.id))
+  const owned = SEASONS[season].items.filter(item => save.unlocked.includes(item.id)).map(item => ({...item, ...save.places[item.id]}));
+  $('#gardenItems').innerHTML = owned
     .sort((a, b) => a.y - b.y) // things lower in the picture sit in front
     .map(item => `<img class="garden-item${item.flying ? ' flying' : ''}${item.id === justAdded ? ' new' : ''}" src="${ITEM_IMG(item.id)}" alt="${item.name}"
-      style="left:${item.x}%;top:${item.y}%;width:${item.w}%">`).join('');
-  $('#gardenEmpty').hidden = SEASONS[season].items.some(item => save.unlocked.includes(item.id));
+      data-id="${item.id}" tabindex="0" draggable="false" style="left:${item.x}%;top:${item.y}%;width:${item.w}%">`).join('');
+  $('#gardenEmpty').hidden = owned.length > 0;
+  $('#dragHint').hidden = !owned.length || save.movedOnce;
   justAdded = null;
 }
 $$('[data-season]').forEach(button => button.addEventListener('click', () => { season = button.dataset.season; renderGarden(); }));
+
+// Players arrange their own garden: press on anything and drag it. Positions are kept (as % of the picture, so they fit any screen).
+// x is the item's centre, y is where it touches the ground.
+const clampPlace = (x, y) => ({x: Math.round(Math.min(97, Math.max(3, x)) * 10) / 10, y: Math.round(Math.min(100, Math.max(12, y)) * 10) / 10});
+function placeItem(element, x, y) {
+  const place = clampPlace(x, y);
+  element.style.left = `${place.x}%`; element.style.top = `${place.y}%`;
+  return place;
+}
+function keepPlace(id, place) {
+  save.places[id] = place; save.movedOnce = true; persist();
+  renderGarden(); // re-sort so whatever is lower stands in front
+}
+let dragging = null;
+$('#gardenItems').addEventListener('pointerdown', event => {
+  const element = event.target.closest('.garden-item');
+  if (!element) return;
+  event.preventDefault();
+  const box = $('#gardenScene').getBoundingClientRect();
+  dragging = {element, box, pointer: event.pointerId,
+    // keep the grab point under the finger instead of jumping the item's foot to it
+    dx: parseFloat(element.style.left) - (event.clientX - box.left) / box.width * 100,
+    dy: parseFloat(element.style.top) - (event.clientY - box.top) / box.height * 100};
+  element.setPointerCapture(event.pointerId);
+  element.classList.add('lifted');
+});
+$('#gardenItems').addEventListener('pointermove', event => {
+  if (!dragging || event.pointerId !== dragging.pointer) return;
+  const {element, box, dx, dy} = dragging;
+  dragging.place = placeItem(element, (event.clientX - box.left) / box.width * 100 + dx, (event.clientY - box.top) / box.height * 100 + dy);
+});
+function dropItem(event) {
+  if (!dragging || event.pointerId !== dragging.pointer) return;
+  const {element, place} = dragging;
+  dragging = null;
+  element.classList.remove('lifted');
+  if (place) keepPlace(element.dataset.id, place);
+}
+$('#gardenItems').addEventListener('pointerup', dropItem);
+$('#gardenItems').addEventListener('pointercancel', dropItem);
+// Keyboard: focus an item and nudge it with the arrow keys.
+$('#gardenItems').addEventListener('keydown', event => {
+  const element = event.target.closest('.garden-item');
+  const step = {ArrowLeft: [-2, 0], ArrowRight: [2, 0], ArrowUp: [0, -2], ArrowDown: [0, 2]}[event.key];
+  if (!element || !step) return;
+  event.preventDefault();
+  const place = placeItem(element, parseFloat(element.style.left) + step[0], parseFloat(element.style.top) + step[1]);
+  keepPlace(element.dataset.id, place);
+  $(`.garden-item[data-id="${element.dataset.id}"]`)?.focus();
+});
 
 // ---------- Add to garden (token page) ----------
 function renderShop() {
