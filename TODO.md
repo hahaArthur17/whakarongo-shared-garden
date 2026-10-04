@@ -38,7 +38,7 @@ The tool also smooths the loop join and updates `clips/index.json`.
 
 ## Deployment
 
-- [ ] Netlify site https://fancy-haupia-09e8b1.netlify.app is still Private: click **Make public** (and optionally rename it)
+- [x] Live at https://fancy-haupia-09e8b1.netlify.app (public). Code: https://github.com/lukawcf/whakarongo-shared-garden
 - To update: rebuild `../shared-garden-deploy` and drop it on the site's Deploys page
 
 ## Camera
